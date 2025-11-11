@@ -5,11 +5,8 @@ Este projeto é um sistema CRUD (Create, Read, Update, Delete) desenvolvido em D
 O sistema permite realizar operações básicas com clientes:
 
 🧍 Listar clientes
-
 ➕ Cadastrar novos clientes
-
 ✏️ Editar informações existentes
-
 ❌ Deletar clientes
 
 🛠️ Tecnologias utilizadas
