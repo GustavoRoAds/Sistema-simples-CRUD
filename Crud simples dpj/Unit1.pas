@@ -26,6 +26,7 @@ type
     btnDeletar: TButton;
     DataSource1: TDataSource;
     oCon: TFDConnection;
+    Button1: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnListarClick(Sender: TObject);
@@ -33,6 +34,7 @@ type
     procedure btnDeletarClick(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
     procedure DBGrid1CellClick(Column: TColumn);
+    procedure Button1Click(Sender: TObject);
   private
     procedure estruturabd;
     procedure pegadados;
@@ -51,7 +53,7 @@ implementation
 
 {$R *.dfm}
 
-uses Unit2, Unit3;
+uses Unit2, Unit3, uBtnTeste;
 
 procedure TForm1.btnListarClick(Sender: TObject);
 begin
@@ -80,6 +82,11 @@ procedure TForm1.btnNovoClick(Sender: TObject);
 begin
   fNovo.ShowModal;
   pegadados;
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  Form4.ShowModal;
 end;
 
 procedure TForm1.DBGrid1CellClick(Column: TColumn);

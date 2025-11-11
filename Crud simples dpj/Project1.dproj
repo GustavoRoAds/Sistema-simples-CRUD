@@ -110,6 +110,10 @@
             <Form>fEditar</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="uBtnTeste.pas">
+            <Form>Form4</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
