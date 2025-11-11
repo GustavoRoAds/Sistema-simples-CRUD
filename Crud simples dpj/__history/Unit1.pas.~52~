@@ -26,12 +26,15 @@ type
     btnDeletar: TButton;
     DataSource1: TDataSource;
     oCon: TFDConnection;
+    Button1: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnListarClick(Sender: TObject);
     procedure btnEditClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
+    procedure DBGrid1CellClick(Column: TColumn);
+    procedure Button1Click(Sender: TObject);
   private
     procedure estruturabd;
     procedure pegadados;
@@ -50,7 +53,7 @@ implementation
 
 {$R *.dfm}
 
-uses Unit2, Unit3;
+uses Unit2, Unit3, uBtnTeste;
 
 procedure TForm1.btnListarClick(Sender: TObject);
 begin
@@ -81,6 +84,16 @@ begin
   pegadados;
 end;
 
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  Form4.ShowModal;
+end;
+
+procedure TForm1.DBGrid1CellClick(Column: TColumn);
+begin
+  idSelecionado := oQry.FieldByName('id').AsInteger;
+end;
+
 procedure TForm1.DBGrid1DblClick(Sender: TObject);
 begin
   if validaCampo=false then
@@ -98,7 +111,7 @@ end;
 procedure TForm1.btnDeletarClick(Sender: TObject);
 begin
 
-  if validaCampo=false then
+  if idSelecionado = 0 then
   begin
     ShowMessage('Nenhum cliente Selecionado!');
     exit;
@@ -118,21 +131,24 @@ begin
   end
   else
     exit;
+
+  idSelecionado := 0;
 end;
 
 function TForm1.validaCampo:boolean;
 begin
   Result := false;
+  if oQry.IsEmpty then
+    exit;
 
   if oQry.FieldByName('id').AsInteger > 0 then
     Result := true
-  else
-    Result := false;
+
 end;
 
 procedure TForm1.btnEditClick(Sender: TObject);
 begin
-  if validaCampo=false then
+  if idSelecionado = 0 then
   begin
     ShowMessage('Nenhum cliente Selecionado!');
     exit;
@@ -141,6 +157,7 @@ begin
   fEditar.idSelecionado := oQry.FieldByName('id').AsInteger;
   fEditar.ShowModal;
   pegadados;
+  idSelecionado := 0;
 end;
 
 procedure TForm1.estruturabd;

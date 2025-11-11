@@ -1,7 +1,8 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  BorderStyle = bsDialog
+  Caption = 'CRUD'
   ClientHeight = 441
   ClientWidth = 624
   Color = clBtnFace
@@ -21,12 +22,15 @@ object Form1: TForm1
     Align = alClient
     BorderStyle = bsNone
     DataSource = DataSource1
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -12
     TitleFont.Name = 'Segoe UI'
     TitleFont.Style = []
+    OnCellClick = DBGrid1CellClick
+    OnDblClick = DBGrid1DblClick
     Columns = <
       item
         Alignment = taLeftJustify
@@ -85,30 +89,32 @@ object Form1: TForm1
       TabOrder = 1
       OnClick = btnListarClick
     end
-    object Button1: TButton
+    object btnNovo: TButton
       Left = 376
       Top = 13
       Width = 75
       Height = 25
       Caption = 'Novo'
       TabOrder = 2
-      OnClick = Button1Click
+      OnClick = btnNovoClick
     end
-    object Button2: TButton
+    object btnEdit: TButton
       Left = 457
       Top = 13
       Width = 75
       Height = 25
       Caption = 'Editar'
       TabOrder = 3
+      OnClick = btnEditClick
     end
-    object Button3: TButton
+    object btnDeletar: TButton
       Left = 538
       Top = 13
       Width = 75
       Height = 25
       Caption = 'Deletar'
       TabOrder = 4
+      OnClick = btnDeletarClick
     end
   end
   object oQry: TFDQuery
