@@ -1,0 +1,80 @@
+object fEditar: TfEditar
+  Left = 0
+  Top = 0
+  Caption = 'Editar'
+  ClientHeight = 185
+  ClientWidth = 306
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poDesktopCenter
+  OnShow = FormShow
+  TextHeight = 15
+  object Label1: TLabel
+    Left = 8
+    Top = 7
+    Width = 33
+    Height = 15
+    Caption = 'Nome'
+  end
+  object Label2: TLabel
+    Left = 8
+    Top = 98
+    Width = 29
+    Height = 15
+    Caption = 'Email'
+  end
+  object Label3: TLabel
+    Left = 8
+    Top = 53
+    Width = 29
+    Height = 15
+    Caption = 'Idade'
+  end
+  object edtNome: TEdit
+    Left = 8
+    Top = 24
+    Width = 233
+    Height = 23
+    TabOrder = 0
+    TextHint = 'Nome'
+  end
+  object edtIdade: TEdit
+    Left = 8
+    Top = 69
+    Width = 121
+    Height = 23
+    TabOrder = 1
+    TextHint = 'Idade'
+  end
+  object edtEmail: TEdit
+    Left = 8
+    Top = 114
+    Width = 233
+    Height = 23
+    TabOrder = 2
+    TextHint = 'Email'
+  end
+  object btnSalvar: TButton
+    AlignWithMargins = True
+    Left = 8
+    Top = 151
+    Width = 49
+    Height = 20
+    Margins.Left = 450
+    Margins.Right = 0
+    Caption = 'Salvar'
+    TabOrder = 3
+    OnClick = btnSalvarClick
+  end
+  object oQry: TFDQuery
+    Connection = Form1.oCon
+    SQL.Strings = (
+      '')
+    Left = 229
+    Top = 32
+  end
+end

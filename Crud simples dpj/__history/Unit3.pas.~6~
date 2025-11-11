@@ -1,0 +1,78 @@
+unit Unit3;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+
+type
+  TfEditar = class(TForm)
+    edtNome: TEdit;
+    edtIdade: TEdit;
+    edtEmail: TEdit;
+    btnSalvar: TButton;
+    oQry: TFDQuery;
+    procedure FormShow(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
+  private
+    procedure pegadados;
+    procedure editadados;
+    { Private declarations }
+  public
+    { Public declarations }
+    idSelecionado: integer;
+  end;
+
+var
+  fEditar: TfEditar;
+
+implementation
+
+{$R *.dfm}
+
+
+procedure TfEditar.FormShow(Sender: TObject);
+begin
+  pegadados;
+end;
+
+procedure TfEditar.btnSalvarClick(Sender: TObject);
+begin
+  editadados;
+end;
+
+procedure TfEditar.editadados;
+begin
+  oQry.Close;
+  oQry.SQL.Clear;
+  oQry.SQL.Add(' UPDATE clientes SET nome = :nome, idade = :idade, email = :email where id = :idSelecionado');
+  oQry.ParamByName('idSelecionado').AsInteger:= idSelecionado;
+  oQry.ParamByName('nome').AsString := edtNome.Text;
+  oQry.ParamByName('idade').AsString := edtIdade.Text;
+  oQry.ParamByName('email').AsString := edtEmail.Text;
+  oQry.ExecSQL;
+end;
+
+
+procedure TfEditar.pegadados;
+begin
+  oQry.Close;
+  oQry.SQL.Clear;
+  oQry.SQL.Add(' select * from clientes where id = :idSelecionado');
+  oQry.ParamByName('idSelecionado').AsInteger := idSelecionado;
+  oQry.Open();
+
+  if oQry.RecordCount > 0 then
+  begin
+    edtNome.Text := oQry.FieldByName('nome').AsString;
+    edtIdade.Text := oQry.FieldByName('idade').AsString;
+    edtEmail.Text := oQry.FieldByName('email').AsString;
+  end;
+
+end;
+
+end.
